@@ -10,6 +10,7 @@ var answerSets = [
 	[ "Circus Circus", "MGM Grand", "Caesar's Palace", "The Venetian" ]];
 var correctAnswers = ["Emma", "Rachel", "The Mr. Beaumont", "Mattresses", "Caesar's Palace"];
 
+
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
@@ -37,13 +38,16 @@ function decrement() {
         $(".heading").html("Friends Trivia Test");
         $(".show-timer").hide();
         $(".show-game").hide();
+        $(".giphy-embed").hide();
         var allDone = $("<h2 id='done'>");
         allDone.html("Time's Up!");
         $(".jumbotron").append(allDone);
+        var sorrygif = $("<iframe src='https://giphy.com/embed/XJCL959KwYbE4' width='480' height='433' frameBorder='0' class='giphy-embed2'>");
+      	$(".jumbotron").append(sorrygif);
         checkAnswers();
         
-      }
-    }
+      };
+    };
  //  The stop function
 function stop() {
       //  Clears our intervalId
@@ -57,6 +61,7 @@ function startGame() {
 	$(".heading").html("Friends Trivia Test");
 
 	$(".btn-primary").hide();
+
 
 	gameTimer();
 	// console.log(timer);
@@ -89,12 +94,9 @@ function startGame() {
 		var a2 = $("<input type='radio' name='set2' value='" + answerSets[1][d] + "' id='choice0" + d + "'>");
 		var b2 = $("<label name='lblChoices' for='choice0" + d + "' value=''>");
 		b2.text(answerSets[1][d]);
-		
-		//console.log(answerSets[c]);
 
 		$(".show-game").append(a2);
 		$(".show-game").append(b2);
-
 	};	
 
 		var q3 = $("<h2 class='question-line'>")
@@ -105,12 +107,9 @@ function startGame() {
 		var a3 = $("<input type='radio' name='set3' value='" + answerSets[2][e] + "' id='choice0" + e + "'>");
 		var b3 = $("<label name='lblChoices' for='choice0" + e + "' value=''>");
 		b3.text(answerSets[2][e]);
-		
-		//console.log(answerSets[c]);
 
 		$(".show-game").append(a3);
 		$(".show-game").append(b3);
-
 	};	
 
 		var q4 = $("<h2 class='question-line'>")
@@ -121,12 +120,9 @@ function startGame() {
 		var a4 = $("<input type='radio' name='set4' value='" + answerSets[3][f] + "' id='choice0" + f + "'>");
 		var b4 = $("<label name='lblChoices' for='choice0" + f + "' value=''>");
 		b4.text(answerSets[3][f]);
-		
-		//console.log(answerSets[c]);
 
 		$(".show-game").append(a4);
 		$(".show-game").append(b4);
-
 	};	
 
 		var q5 = $("<h2 class='question-line'>")
@@ -137,36 +133,19 @@ function startGame() {
 		var a5 = $("<input type='radio' name='set5' value='" + answerSets[4][g] + "' id='choice0" + g + "'>");
 		var b5 = $("<label name='lblChoices' for='choice0" + g + "' value=''>");
 		b5.text(answerSets[4][g]);
-		
-		//console.log(answerSets[c]);
 
 		$(".show-game").append(a5);
 		$(".show-game").append(b5);
-
-
-
 	};	
 		
 	$(".show-game").append($("<br>"));	
-	var submitButton = $("<p class='btn btn-primary btn-lg' id='submit' role='button'>");
+	var submitButton = $("<button type='button' class='btn btn-primary' id='subB'>");
 	submitButton.show();
 	submitButton.text("Submit");
-	// TO-DO: move this button to the bottom
 	$(".show-game").append(submitButton);
 	
-
 };
 
-/*function isChecked() {
-	
-	
-	
-
-	if (!$("input[name='set1']:checked").val()) {
-		console.log("nothing is checked");
-	}; 
-
-};*/
 
 function checkAnswers() {
 
@@ -201,6 +180,7 @@ function checkAnswers() {
 	} else {
 		incorrect++;
 	};
+
 	if (!$("input[name='set4']:checked").val()) {
 		unanswered++;
 	} else if ($("input[name='set4']:checked").val() === correctAnswers[3]) {
@@ -208,6 +188,7 @@ function checkAnswers() {
 	} else {
 		incorrect++;
 	};
+
 	if (!$("input[name='set5']:checked").val()) {
 		unanswered++;
 	} else if ($("input[name='set5']:checked").val() === correctAnswers[4]) {
@@ -216,26 +197,17 @@ function checkAnswers() {
 		incorrect++;
 	};
 
-
-	
-	$(".heading").html("Friends Trivia Test");
-    $(".show-timer").hide();
-    $(".show-game").hide();
-    var allDone = $("<h2 id='done'>");
-        allDone.html("All done!");
-        $(".jumbotron").append(allDone);
-        showScore();
-
-	
-	
-
-	
+    showScore();
 
 	};
 
 
 
 function showScore() {
+	$(".heading").html("Friends Trivia Test");
+	$(".giphy-embed").hide();
+    $(".show-timer").hide();
+    $(".show-game").hide();
 	var scoreDiv = $("<div id='show-score'>");
     $(".jumbotron").append(scoreDiv);
     var corr = $("<p>").text("Correct answers: " + correct);
@@ -248,16 +220,14 @@ function showScore() {
 
 
 
-
-
-
-
-
 $(document).ready(function() {
 
 	$(".btn-primary").on("click", startGame);
-	
-	$("#submit").on("click", checkAnswers);
-	
+	$("#subB").on("click", function() {
+	checkAnswers();
+	var allDone = $("<h2 id='done'>");
+    allDone.html("All done!");
+    $(".jumbotron").append(allDone);
+	});
 
 })	
