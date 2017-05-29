@@ -14,7 +14,7 @@ var correctAnswers = ["Emma", "Rachel", "The Mr. Beaumont", "Mattresses", "Caesa
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
-var timer = 10;
+var timer = 60;
 var intervalId;
 
 //FUNCTIONS (Reusable blocks of code that I will call upon when needed)
