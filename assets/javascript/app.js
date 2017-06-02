@@ -205,6 +205,9 @@ function checkAnswers() {
 
 function showScore() {
 	$(".heading").html("Friends Trivia Test");
+	var allDone = $("<h2 id='done'>");
+    allDone.html("All done!");
+    $(".jumbotron").append(allDone);
 	$(".giphy-embed").hide();
     $(".show-timer").hide();
     $(".show-game").hide();
@@ -221,13 +224,12 @@ function showScore() {
 
 
 $(document).ready(function() {
-
-	$(".btn-primary").on("click", startGame);
-	$("#subB").on("click", function() {
+	$(document).on("click", ".btn", startGame);
+	//$(".btn-primary").on("click", startGame);
+	$(document).on("click", "#subB", function() {
+	//$("#subB").on("click", function() {
 	checkAnswers();
-	var allDone = $("<h2 id='done'>");
-    allDone.html("All done!");
-    $(".jumbotron").append(allDone);
+	stop();
 	});
 
 })	
